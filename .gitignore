@@ -1,0 +1,36 @@
+# Paquetes
+#**.tar.gz
+#**.jar
+
+# Backups y compilados
+**.synctex.gz
+**.kate-swp
+
+# Latex aux
+**.aux
+**.log
+**.nav
+**.out
+#**.pdf
+**.snm
+**.toc
+**.vrb
+**.backup
+
+# Bibtex aux
+**.bbl
+**.bcf
+**.blg
+**.run.xml
+
+# Biber or JabRef aux
+**.bib.bak
+**.bak
+**.sav
+
+# vi aux
+**.swp
+
+# KDE directory preferences
+.directory
+

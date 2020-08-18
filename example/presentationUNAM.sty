@@ -1,0 +1,339 @@
+%% Requiere
+%% sudo apt-get install texlive-science texlive-latex-extra biber
+%% sudo apt-get install texlive-latex-recommended texlive-lang-spanish texlive-fonts-extra
+
+%% Spanish
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{csquotes}
+\usepackage{default}
+\uselanguage{spanish}
+\languagepath{spanish}
+
+\usepackage[normalem]{ulem}
+% Tip from: https://tex.stackexchange.com/questions/20609/strikeout-in-math-mode
+\let\isout\sout \renewcommand{\sout}[1]{\ifmmode\text{\isout{\ensuremath{#1}}}\else\isout{#1}\fi}
+
+\deftranslation[to=spanish]{Theorem}{Teorema}
+\deftranslation[to=spanish]{theorem}{teorema}
+%% Definitions
+\theoremstyle{definition}
+\newtheorem{defn}{Definición}[section]
+
+\deftranslation[to=spanish]{Definition}{Definición}
+\newcommand{\iacute}{\acute{\imath}}
+
+%% Font requirements
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}% http://ctan.org/pkg/lm
+\usepackage[small, euler-digits]{eulervm}
+\renewcommand{\emph}[1]{{\color{blue}\textit{#1}}}
+
+\def\thefootnote{[\arabic{footnote}]}
+
+%%
+%% Theme
+%%
+
+% %% Presentation style
+%\mode<presentation>{ \usetheme{boxes} }
+
+\usetheme{UNAM}
+
+\definecolor{AzulOriginal}{rgb}{0.2,0.2,0.7}
+\definecolor{Esmeralda}{rgb}{0.4,0.7,0.5}
+\definecolor{Violeta}{rgb}{0.5,0.035,1}
+\definecolor{VioletaOtro}{rgb}{0.64,0,0.81}
+\definecolor{Coral}{rgb}{1,0.11373,0.24706}
+\definecolor{AzulCobalto}{rgb}{0.082,0.48,1.0}
+\definecolor{AzulCobaltoII}{rgb}{0.05,0.30,0.7}
+\definecolor{AzulClaro}{cmyk}{0.2,0,0,0}
+\definecolor{RosaClaro}{cmyk}{0,0.2,0,0}
+\definecolor{VerdeClaro}{cmyk}{0.2,0,0.2,0}
+\definecolor{VerdeOscuro}{rgb}{0.24,0.41,0.11}
+\definecolor{ias_bluelight}{RGB}{153, 204, 255}
+\definecolor{ias_bluemid}{RGB}{122,163, 204}
+\definecolor{ias_bluedark}{RGB}{91, 121, 152}
+\definecolor{PMS_654_C_Azul}{RGB}{0, 61, 121}
+\definecolor{PMS_871_Dorado}{RGB}{132,117,78}
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
+\definecolor{lightred}{rgb}{1.0,0.93,0.95}
+\definecolor{lightgreen}{rgb}{0.93,1.0,0.95}
+\definecolor{lightviolet}{rgb}{1.0,0.93,1.0}
+
+
+
+%% Colours
+\colorlet{rowtitle}{cyan!10!white}
+\def\colCode{white!25!black}
+
+
+\def\colTableRow{lightblue}
+\def\colTableRowOne{lightred}
+\def\colTableRowTwo{lightgreen}
+\def\colTableRowThree{lightviolet}
+
+
+\newcommand{\ThemeMorelos}{
+ \def\colStruct{PMS_871_Dorado}
+ \def\colMain{PMS_654_C_Azul}
+ \def\colHead{PMS_654_C_Azul!50!White}
+ \def\colEmph{PMS_871_Dorado}
+}
+
+
+\newcommand{\ThemeBlue}{
+ \def\colStruct{DarkBlue}
+ \def\colMain{AzulOriginal}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{AzulOriginal}
+}
+
+\newcommand{\ThemeDarkBlue}{
+ \def\colStruct{DarkBlue}
+ \def\colMain{DarkBlue}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{DarkBlue}
+}
+
+\newcommand{\ThemeEmerald}{
+ \def\colStruct{DarkGreen}
+ \def\colMain{Esmeralda}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{DarkGreen}
+}
+
+\newcommand{\ThemeViolet}{
+ \def\colStruct{DarkBlue}
+ \def\colMain{Violeta}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{blue}
+}
+
+\newcommand{\ThemeOtherViolet}{
+ \def\colStruct{VioletaOtro}
+ \def\colMain{VioletaOtro}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{\colMain}
+}
+
+\newcommand{\ThemeRed}{
+ \def\colStruct{Coral}
+ \def\colMain{Coral}
+ \def\colHead{\colMain!50!White}
+ \def\colEmph{Coral}
+}
+
+\newcommand{\ThemeSteelBlue}{
+  \def\colStruct{ias_bluemid}
+  \def\colMain{ias_bluemid}
+  \setbeamercolor*{palette secondary}{fg=white,bg=ias_bluelight} % Title Gradients
+  \setbeamercolor*{item}{fg=ias_bluedark}
+  \def\colEmph{blue}
+}
+
+\setbeamercolor{structure}{fg=\colStruct}
+\setbeamercolor*{palette secondary}{fg=white,bg=\colMain} % Title Gradients
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=\colMain} % Title Box
+\setbeamercolor*{item}{fg=\colMain}
+
+\renewcommand{\emph}[1]{{\color{\colEmph}\textit{#1}}}
+ 
+ 
+
+%%
+%% Highlight equations
+%%
+
+% https://tex.stackexchange.com/questions/226111/beamer-box-around-equations
+\usepackage{empheq}
+\usepackage[many]{tcolorbox}
+%\tcbset{highlight math style={enhanced,
+%  colframe=red!60!black,colback=yellow!50!white,arc=4pt,boxrule=1pt,
+%  }}
+\let\tcboxComment=\comment
+\let\comment=\undefined	% I will define it latter for another purpose
+\newtcbox{\mybox}[1][]{nobeforeafter,math upper,tcbox raise base,
+  enhanced,frame hidden,boxrule=0pt,interior style={top color=\colMain!10!white,
+  bottom color=\colMain!10!white,middle color=\colEmph!50!white},
+  fuzzy halo=1pt with \colEmph,drop large lifted shadow,#1}
+  
+  
+
+%%
+%% Tikz
+%%
+\usepackage{tikz,pgfplots,pgfplotstable}
+\pgfplotsset{compat=1.16}
+%\usepackage{etex}
+\usetikzlibrary{shapes, shapes.geometric,
+                arrows, arrows.meta,
+                positioning, calc, fit, shadows, backgrounds,
+                decorations.markings, decorations.pathmorphing,
+                plotmarks}
+\usetikzlibrary{shapes.geometric,calc,fit}
+\usetikzlibrary{matrix}
+\usetikzlibrary{automata}
+
+
+%% Ticks and crosses
+
+\usepackage{textcomp}
+\usepackage{amssymb}
+\definecolor{DarkGreen}{rgb}{0,0.5,0}
+\def\gtick{\textcolor{DarkGreen}{\checkmark}}
+\definecolor{DarkRed}{rgb}{0.5,0,0}
+\def\rcross{\textcolor{DarkRed}{x}}
+\definecolor{DarkGray}{rgb}{0.30,0.30,0.30}
+
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+%% Tables
+\usepackage{etoolbox}
+%\AtBeginEnvironment{tabular}{\rowcolors{1}{\ifnumless{\rownum}{2}{\colStruct!40}{white}}{}}
+\newenvironment{tabularc}{\rowcolors{1}{\ifnumless{\rownum}{2}{\colStruct!40}{white}}{}\tabular}{\endtabular}
+\newcolumntype{L}{>{\columncolor{\colStruct!40}}l}
+
+%\usepackage{etex}
+%\usepackage{ctable}
+\def\thickline{\specialrule{.15em}{.05em}{.05em}}
+\usepackage{multirow}
+\usepackage{rotating}
+
+%% Web
+\usepackage{hyperref}
+%\newcommand{\hurl}[1]{\begin{footnotesize}\texttt{\href{#1}{#1}}\end{footnotesize}}
+\newcommand{\hurl}[1]{\href{#1}{{\color{AzulCobalto}\begin{tiny}\texttt{#1}\end{tiny}}}}
+\newcommand{\fhref}[2]{\href{#1}{\color{AzulCobalto}\begin{tiny}\texttt{#2}\end{tiny}}}
+\newcommand{\pcite}[1]{\raggedleft{\color{AzulCobalto}\tiny #1}}
+
+% %% Bibliografía
+% \usepackage[backend=biber,style=authoryear,autocite=inline]{biblatex}
+% % \usepackage{natbib}
+% % \bibliographystyle{agsm}
+% 
+% % \usepackage[style=authoryear]{biblatex}
+% % Filter warnings issued by package biblatex starting with "Patching footnotes failed"
+% % \usepackage{silence}
+% % \WarningFilter{biblatex}{Patching footnotes failed}
+% % \setbeamertemplate{bibliography item}{%
+% %   \ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+% %     or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+% %     or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+% %     {\setbeamertemplate{bibliography item}[book]}
+% %     {\ifentrytype{online}
+% %        {\setbeamertemplate{bibliography item}[online]}
+% %        {\setbeamertemplate{bibliography item}[article]}}%
+% %   \usebeamertemplate{bibliography item}}
+% % 
+% % \defbibenvironment{bibliography}
+% %   {\list{}
+% %      {\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+% %       \setlength{\leftmargin}{\labelwidth}%
+% %       \setlength{\labelsep}{\biblabelsep}%
+% %       \addtolength{\leftmargin}{\labelsep}%
+% %       \setlength{\itemsep}{\bibitemsep}%
+% %       \setlength{\parsep}{\bibparsep}}}
+% %   {\endlist}
+% %   {\item}
+% 
+% 
+%% Code
+\usepackage{listings}
+\lstset{ %
+  basicstyle=\ttfamily\footnotesize,        % the size of the fonts that are used for the code
+  commentstyle=\color{DarkGreen}\textit,    % comment style
+  keywordstyle=\color{blue},       % keyword style
+  numbers=left,		% where to put the line-numbers; possible values are (none, left, right)
+  numberstyle=\tiny\color{DarkGray}, % the style that is used for the line-numbers
+  showstringspaces=true,          % underline spaces within strings only
+  stringstyle=\color{DarkGreen},     % string literal style
+  extendedchars=true,
+  breaklines=true,
+  %postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, % Broken
+  postbreak=-->,
+}
+\lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+  {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+  {¡}{{!`}}1
+}
+\newcommand{\comment}[1]{{\color{VerdeOscuro}#1}}
+\newcommand{\code}[1]{\textcolor{\colCode}{\texttt{#1}}}
+\newsavebox{\codebox}
+
+%% Verbatim with style
+\usepackage{fancyvrb}
+
+%%
+%% Math mode
+%%
+\usepackage{bm}
+\newcommand{\mat}[1]{\bm{#1}}
+\newcommand{\rvar}[1]{\mathrm{#1}} % Variable aleatoria
+
+\usepackage[makeroom]{cancel} % El término se cancela a x valor.
+\usepackage{extarrows} % http://www.ctan.org/tex-archive/macros/latex/contrib/extarrows % texlive-math-extra
+\usepackage{mathtools}
+
+%
+% Algorithms
+%
+\usepackage{algorithm, algorithmicx}
+%\usepackage{float}
+\usepackage[noend]{algpseudocode}
+\def\entersymbol{$\hookleftarrow$}
+\makeatletter
+\renewcommand{\ALG@name}{Algoritmo}
+\renewcommand{\listalgorithmname}{Lista de \ALG@name s}
+\algrenewcommand\textproc{\fontfamily{phv}\selectfont\textsc}
+\renewcommand*\Call[2]{\textproc{#1}(#2)}
+\makeatother
+
+
+\MakeRobust{\Call}
+
+% https://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
+% New definitions
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+% New "environments"
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ #1\ \algorithmicdo}{\algorithmicend\ \algorithmicswitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1:}{\algorithmicend\ \algorithmiccase}%
+\algtext*{EndSwitch}%
+\algtext*{EndCase}%
+
+
+% Refs
+% Ecuaciones
+\newcommand{\eref}[1]{(\ref{#1})}
+
+% Show the table of contents at the beginning of every section
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Temas}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}{Temas}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}

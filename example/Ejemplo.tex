@@ -1,0 +1,186 @@
+\documentclass[aspectratio=169,usenames,dvipsnames,svgnames,table]{beamer}
+\usepackage{presentationUNAM}
+\ThemeDarkBlue
+\lstset{language=Java}
+
+% Información estándar
+\title{Ejemplo}
+\subtitle{Presentación con subítitulos}
+\author[Ver\'onica E. Arriola-Rios]{Verónica E. Arriola-Rios}
+\institute{Facultad de Ciencias, UNAM}
+\date{\today}
+%\titlegraphic{\includegraphics{<logo>}}
+\titlegraphic{FC}
+
+
+
+\begin{document}
+
+%% Título
+\frame{\titlepage}
+
+\section{Lo básico}
+
+\begin{frame}
+\begin{definition}[Definición]
+ Una \emph{definición} establece los elementos que conforman...
+\end{definition}
+
+También tenemos ecuaciones con una fuente diferente:
+\begin{align}
+ eq &= \sum_{i} x_i \\
+ \oint f(x) dx &= 0
+\end{align}
+
+\end{frame}
+
+
+
+\begin{frame}{Un cuadro con...}
+\framesubtitle{¡Subtítulo!}
+Probemos ahora las viñetas:
+\begin{itemize}
+ \item Primer elemento.
+ \begin{itemize}
+  \item Elemento anidado.
+  \begin{itemize}
+   \item Otro más.
+   \item Uno de adorno.
+  \end{itemize}
+ \end{itemize}
+\end{itemize}
+
+Y las enumeraciones:
+\begin{enumerate}
+ \item Primer elemento con un texto un poco largo para probar.
+ \begin{enumerate}
+  \item Elemento anidado, con más royo para ocupar toda la línea.
+  \begin{enumerate}
+   \item Otro más.
+   \item Uno de adorno.
+  \end{enumerate}
+ \end{enumerate}
+\end{enumerate}
+
+\end{frame}
+
+
+
+\section{Para programadores}
+\subsection{Algoritmo}
+
+\begin{frame}{Algoritmo}
+\begin{algorithm}[H]
+\caption{Búsqueda en un árbol.}\label{alg:busqueda_general}
+\begin{algorithmic}[1]
+  \Function{BúsquedaEnÁrbol}{$problema$, $estrategia$}
+   \State $margen \leftarrow \{$ new \Call{NodoBúsqueda}{$problema.s_i$}$\}$
+   \Loop
+    \If{\Call{vacía}{$margen$}} \Return Fallo \EndIf
+    \State $nodo \leftarrow$ seleccionaDe($margen$, $estrategia$)
+    \If{$problema$.PruebaEsMeta($nodo.estado$)}
+     \State \Return caminoA($nodo$)
+    \EndIf
+    \State $margen \leftarrow margen$ + expande($problema$, $nodo$) \label{alg:estrategia}
+   \EndLoop
+  \EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{frame}
+
+
+
+\subsection{Código}
+
+\begin{frame}[fragile]{Código}
+\begin{lstlisting}
+public static <C extends Comparable<? super C>>
+       void bubleSort(C[] a) {
+  boolean swapped = false;
+  for(int i = 0; i < a.length - 1; i++) {
+    swapped = false;
+    for(int j = 1; j < a.length - i; j++) {
+      if(a[j-1].compareTo(a[j]) > 0) {
+        swap(a, j-1,j);
+        swapped = true;
+      }
+    }
+    if(!swapped) return;
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+
+
+
+\section{Diagramas con tikz}
+
+\begin{frame}{Computadora}
+\centering
+ \begin{tikzpicture}[>=stealth, very thick,
+   component/.style={
+     rectangle,                     % forma del nodo
+     very thick,                    % estilo del borde
+     draw=pink,                     % color del borde
+     top color=white,               % relleno sombreado blanco en la parte de arriba...
+     bottom color=pink!50!black!20, % y otro color en la parte de abajo
+     align = center
+   }]
+  \node [component] (mem) {Memoria};
+  \node [component, text width = 6em, below = of mem] (prc) {Procesador central};
+  \node [component, text width = 6em, left = of prc] (i) {Elementos de entrada};
+  \node [component, text width = 6em, right = of prc] (o) {Elementos de salida};
+  \draw [->] (i) -- (prc);
+  \draw [->] (prc) -- (o);
+  \draw [<->] (prc) -- (mem);
+ \end{tikzpicture}
+ \begin{center}
+  Diagrama de bloques de una computadora.
+ \end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Columnas}
+\begin{columns}
+\column{0.5\textwidth}
+
+\begin{itemize}
+ \item Matemático húngaro-estadounidense
+ \item Con contribuciones en:
+ \begin{itemize}
+  \item Uno,
+  \item dos,
+  \item tres.
+ \end{itemize}
+\end{itemize}
+
+\column{0.5\textwidth}
+ 
+ Y otro texto en la columna dos.
+\end{columns}
+\end{frame}
+
+
+
+
+\section{Bibliografía}
+\stepcounter{subsection}
+\begin{frame}{Bibliografía}
+\begin{thebibliography}{9}
+\setbeamertemplate{bibliography item}[online]
+\bibitem{A} ItemA
+\setbeamertemplate{bibliography item}[book]
+\bibitem{B} ItemB
+\setbeamertemplate{bibliography item}[article]
+\bibitem{C} ItemC
+\setbeamertemplate{bibliography item}[triangle]
+\bibitem{D} ItemD
+\setbeamertemplate{bibliography item}[text]
+\bibitem{E} ItemE
+\end{thebibliography}
+\end{frame}
+
+\end{document}
