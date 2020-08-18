@@ -21,5 +21,5 @@ $ sudo cp theme/*.sty /usr/local/share/texmf/tex/latex/beamer/
 ```
 Finalmente, para actualizar la base de datos de latex, ejecutar:
 ```
-$ texhash
+$ sudo texhash
 ```
