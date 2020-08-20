@@ -190,6 +190,10 @@
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 
+%% Columns
+
+\usepackage{multicol}
+
 %% Tables
 \usepackage{etoolbox}
 %\AtBeginEnvironment{tabular}{\rowcolors{1}{\ifnumless{\rownum}{2}{\colStruct!40}{white}}{}}
@@ -330,7 +334,10 @@
 
 \AtBeginSubsection[]
 {
-  \begin{frame}{\insertsection}
-    \tableofcontents[currentsection,currentsubsection]
+  \begin{frame}{Temas}
+    \tableofcontents[
+      sectionstyle=show/hide, 
+      subsectionstyle=show/shaded/hide,
+      ]
   \end{frame}
 }
