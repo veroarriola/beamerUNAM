@@ -67,12 +67,54 @@
   \vfill
 }
 
+% Section page: UNAM
+
+\defbeamertemplate*{section page}{UNAM}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    
+    \leavevmode%
+    \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \centering\leavevmode
+          \usebeamercolor[fg]{frametitle}\usebeamerfont{title}\strut\hspace{2.5cm}\insertsection\strut\par%
+          \vskip1.0ex
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 4pt%
+      \begin{pgfpicture}{0pt}{0pt}{0.8\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+        \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{0.8\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+        \pgftext[left,base]{\pgfuseshading{beamer@topshade}}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+      
+      \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+       
+      \end{beamercolorbox}
+
+  \endgroup
+  
+  \tableofcontents[currentsection]
+
+  \vfill
+}
+
+
 \setbeamertemplate{blocks}[rounded][shadow=\beamer@themerounded@shadow]
 \setbeamertemplate{items}[ball]
 \setbeamertemplate{sections/subsections in toc}[ball]
 \setbeamertemplate{title page}[UNAM][colsep=-4bp,rounded=false,shadow=\beamer@themerounded@shadow]
 \setbeamertemplate{part page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
-\setbeamertemplate{section page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
+\setbeamertemplate{section page}[UNAM][colsep=-4bp,rounded=false,shadow=\beamer@themerounded@shadow]
 \setbeamertemplate{subsection page}[default][colsep=-4bp,rounded=true,shadow=\beamer@themerounded@shadow]
   
 \mode<all>

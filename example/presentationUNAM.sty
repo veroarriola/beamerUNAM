@@ -325,15 +325,12 @@
 % Show the table of contents at the beginning of every section
 \AtBeginSection[]
 {
-   \begin{frame}
-       \frametitle{Temas}
-       \tableofcontents[currentsection]
-   \end{frame}
+  \frame{\sectionpage}
 }
 
 \AtBeginSubsection[]
 {
-  \begin{frame}{Temas}
+  \begin{frame}{\insertsection}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
