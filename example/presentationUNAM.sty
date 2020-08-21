@@ -28,6 +28,13 @@
 \usepackage{lmodern}% http://ctan.org/pkg/lm
 \usepackage[small, euler-digits]{eulervm}
 
+% Fix small caps
+\usepackage{letltxmacro}
+\LetLtxMacro{\oldtextsc}{\textsc}
+\renewcommand{\textsc}[1]{{\fontfamily{phv}\selectfont\oldtextsc{#1}}} % Usa Helvetica para las small caps, ya que cmss no tiene esa opción.
+\LetLtxMacro{\oldscshape}{\scshape}
+\renewcommand{\scshape}{\fontfamily{phv}\selectfont\oldscshape}
+
 \def\thefootnote{[\arabic{footnote}]}
 
 %%
@@ -94,6 +101,7 @@
  \def\colMain{DarkBlue}
  \def\colHead{\colMain!50!White}
  \def\colEmph{AzulCobalto}
+ \def\colMarcos{AzulCobalto}              % Para diagramas-fciencias
 }
 
 \newcommand{\ThemeEmerald}{
@@ -214,7 +222,8 @@
 \newcommand{\pcite}[1]{\raggedleft{\color{AzulCobalto}\tiny #1}}
 
 % %% Bibliografía
-% \usepackage[backend=biber,style=authoryear,autocite=inline]{biblatex}
+
+\usepackage[backend=biber,style=authoryear]{biblatex}
 % % \usepackage{natbib}
 % % \bibliographystyle{agsm}
 % 

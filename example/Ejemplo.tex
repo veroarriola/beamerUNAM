@@ -3,6 +3,8 @@
 \ThemeDarkBlue
 \lstset{language=Java}
 
+\addbibresource{icc_pres.bib}
+
 % Información estándar
 \title{Ejemplo}
 \subtitle{Presentación con subítitulos}
@@ -31,6 +33,8 @@ También tenemos ecuaciones con una fuente diferente:
  eq &= \sum_{i} x_i \\
  \oint f(x) dx &= 0
 \end{align}
+
+Cita: \cite{Viso2012}
 
 \end{frame}
 
@@ -168,7 +172,8 @@ public static <C extends Comparable<? super C>>
 
 \section{Bibliografía}
 \stepcounter{subsection}
-\begin{frame}{Bibliografía}
+\begin{frame}[allowframebreaks]{Bibliografía}
+Manual:
 \begin{thebibliography}{9}
 \setbeamertemplate{bibliography item}[online]
 \bibitem{A} ItemA
@@ -181,6 +186,10 @@ public static <C extends Comparable<? super C>>
 \setbeamertemplate{bibliography item}[text]
 \bibitem{E} ItemE
 \end{thebibliography}
+
+\vspace*{2ex}
+Usando biblatex:
+\printbibliography
 \end{frame}
 
 \end{document}
