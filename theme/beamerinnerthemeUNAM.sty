@@ -25,12 +25,12 @@
     \centering
     
     \leavevmode%
-    \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+    \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{0.8\paperwidth}%
           \vbox{}\vskip-.75ex%
           \centering\leavevmode
-          \usebeamercolor[fg]{frametitle}\usebeamerfont{title}\strut\hspace{2.5cm}\inserttitle\strut\par%
+          \usebeamercolor[fg]{frametitle}\usebeamerfont{title}\strut\inserttitle\strut\par%
           \ifx\insertsubtitle\@empty\else%
-            {\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\hspace{2.5cm}\insertsubtitle}\strut\par\vbox{}\vskip-1.0ex}%
+            {\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertsubtitle}\strut\par\vbox{}\vskip-1.0ex}%
           \fi%
           \vskip1.0ex
           \nointerlineskip
@@ -45,7 +45,7 @@
         \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
         \pgftext[left,base]{\pgfuseshading{beamer@topshade}}
       \end{pgfpicture}
-      \hskip-\paperwidth%
+      \hskip-0.81\paperwidth%
       \box\beamer@tempbox%
   
   
