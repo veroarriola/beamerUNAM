@@ -19,6 +19,8 @@
 %% Definitions
 \theoremstyle{definition}
 \newtheorem{defn}{Definición}[section]
+\newtheorem{syntax}{Sintaxis}[section]
+\newcommand{\ctab}{\hspace*{0.5cm}}
 
 \deftranslation[to=spanish]{Definition}{Definición}
 \newcommand{\iacute}{\acute{\imath}}
@@ -102,6 +104,9 @@
  \def\colHead{\colMain!50!White}
  \def\colEmph{AzulCobalto}
  \def\colMarcos{AzulCobalto}              % Para diagramas-fciencias
+ 
+ \def\colDrawingEmph{Violeta}
+ \def\colSecondaryDrawingEmph{AzulCobalto!40}
 }
 
 \newcommand{\ThemeEmerald}{
@@ -203,6 +208,14 @@
 \usepackage{multicol}
 
 %% Tables
+\usepackage{longtable,tabu}
+\usepackage{tabularx}
+\newcommand{\thead}[1]{\textbf{#1}}
+\newcommand{\tlongfoot}[1]{%
+  \hline \multicolumn{#1}{r}{\textcolor{gray}{Continúa...}} \\ \endfoot%
+  \hline \endlastfoot
+}
+
 \usepackage{etoolbox}
 %\AtBeginEnvironment{tabular}{\rowcolors{1}{\ifnumless{\rownum}{2}{\colStruct!40}{white}}{}}
 \newenvironment{tabularc}{\rowcolors{1}{\ifnumless{\rownum}{2}{\colStruct!40}{white}}{}\tabular}{\endtabular}
@@ -216,10 +229,12 @@
 
 %% Web
 \usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=,urlcolor=AzulCobalto,citecolor=Gray}
 %\newcommand{\hurl}[1]{\begin{footnotesize}\texttt{\href{#1}{#1}}\end{footnotesize}}
 \newcommand{\hurl}[1]{\href{#1}{{\color{AzulCobalto}\begin{tiny}\texttt{#1}\end{tiny}}}}
 \newcommand{\fhref}[2]{\href{#1}{\color{AzulCobalto}\begin{tiny}\texttt{#2}\end{tiny}}}
 \newcommand{\pcite}[1]{\raggedleft{\color{AzulCobalto}\tiny #1}}
+\newcommand{\citehlabel}[1]{\textbf{\tiny #1 }}
 
 % %% Bibliografía
 
@@ -255,6 +270,27 @@
 % 
 %% Code
 \usepackage{listings}
+
+\lstdefinelanguage{sintaxdef}{
+    alsodigit = {::=},
+    keywords = {},
+    otherkeywords={% Operators
+        >, <, |, ::=
+    },
+    keywords = [2]{::=},
+    keywordstyle=\color{blue},
+    keywordstyle=[2]\color{purple},
+}
+
+\lstdefinestyle{sintaxis} {
+  language=sintaxdef,
+  escapeinside={(@}{@)}, % No funciona, hay que ponerlo directo
+  escapechar=`,
+  frame=none,
+  numbers=none,
+}
+
+
 \lstset{ %
   basicstyle=\ttfamily\footnotesize,        % the size of the fonts that are used for the code
   commentstyle=\color{DarkGreen}\textit,    % comment style
@@ -267,6 +303,8 @@
   breaklines=true,
   %postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, % Broken
   postbreak=-->,
+  frame=lines,
+  rulecolor=\color{cyan}
 }
 \lstset{literate=
   {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
@@ -287,6 +325,8 @@
 \newcommand{\code}[1]{\textcolor{\colCode}{\texttt{#1}}}
 \newsavebox{\codebox}
 
+\def\Java{\code{Java}}
+
 %% Verbatim with style
 \usepackage{fancyvrb}
 
@@ -300,6 +340,9 @@
 \usepackage[makeroom]{cancel} % El término se cancela a x valor.
 \usepackage{extarrows} % http://www.ctan.org/tex-archive/macros/latex/contrib/extarrows % texlive-math-extra
 \usepackage{mathtools}
+\NewDocumentCommand{\overarrow}{O{=} O{\downarrow} m}{%
+  \overset{\makebox[0pt]{\begin{tabular}{@{}c@{}}#3\\[0pt]\ensuremath{#2}\end{tabular}}}{#1}
+}
 
 %
 % Algorithms
@@ -313,12 +356,17 @@
 \renewcommand{\listalgorithmname}{Lista de \ALG@name s}
 \algrenewcommand\textproc{\fontfamily{phv}\selectfont\textsc}
 \renewcommand*\Call[2]{\textproc{#1}(#2)}
+\algblockdefx[FOREACH]{ForEach}{EndFor}%
+     [2]{\textbf{for each} \textit{#1} \textbf{in} \textit{#2} \textbf{do}}%
+     {\textbf{end for}}
 \makeatother
 
 
 \MakeRobust{\Call}
 
 % https://tex.stackexchange.com/questions/53357/switch-cases-in-algorithmic
+\renewcommand{\algorithmicrequire}{\textbf{Precondiciones:}}
+\renewcommand{\algorithmicensure}{\textbf{Postcondiciones:}}
 % New definitions
 \algnewcommand\algorithmicswitch{\textbf{switch}}
 \algnewcommand\algorithmiccase{\textbf{case}}
