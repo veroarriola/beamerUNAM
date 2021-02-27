@@ -121,6 +121,7 @@
  \def\colMain{Violeta}
  \def\colHead{\colMain!50!White}
  \def\colEmph{blue}
+ \setbeamercolor{alerted text}{fg=blue}
 }
 
 \newcommand{\ThemeOtherViolet}{
@@ -227,6 +228,32 @@
 \usepackage{multirow}
 \usepackage{rotating}
 
+
+%% Tablas muy elegantes
+
+% \newcommand{\indexcell}[1]{\multicolumn{1}{c}{\tiny{#1}}}
+% \newcommand{\hindexcell}[1]{\multicolumn{1}{c|}{\tiny{#1}}}
+% \newcommand{\colorendcell}[1]{\multicolumn{1}{c!{\color{red}\vrule width 2pt}}{#1}}
+% \newcommand{\colorbeginendcell}[1]{\multicolumn{1}{!{\color{red}\vrule width 2pt}c!{\color{red}\vrule width 2pt}}{#1}}
+
+\def\colMarcos{CadetBlue}
+\def\colEncabezado{AzulCobalto!50}
+\def\colBackground{\colMarcos!10}
+\usepackage{tabularx}
+\newcolumntype{H}{>{\columncolor{\colEncabezado}}c}
+\newcolumntype{I}{>{\columncolor{\colEncabezado}}l}
+\newcolumntype{B}{>{\columncolor{\colBackground}}c}
+%\newcolumntype{L}{>{\columncolor{\colBackground}}l}
+\newcolumntype{A}{>{\columncolor{\colBackground}}X}
+\newcommand{\configcolortable}{
+ \arrayrulecolor{white}
+ \arrayrulewidth=1pt
+ \renewcommand{\arraystretch}{1.5}
+ \rowcolors[\hline]{3}{.!50!White}{}
+}
+
+
+
 %% Web
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor=,urlcolor=AzulCobalto,citecolor=Gray}
@@ -267,9 +294,15 @@
 % %   {\endlist}
 % %   {\item}
 % 
-% 
+
+
+%% Enumeracion
+\usepackage[newenum,newitem]{paralist}
+
+
 %% Code
 \usepackage{listings}
+\renewcommand*{\lstlistingname}{Código}
 
 \lstdefinelanguage{sintaxdef}{
     alsodigit = {::=},
@@ -288,6 +321,14 @@
   escapechar=`,
   frame=none,
   numbers=none,
+}
+\lstdefinestyle{shell}
+{
+  basicstyle=\ttfamily\footnotesize,
+  numbers=none,
+  backgroundcolor = \color{lightgray},
+  frame=None,
+  framexleftmargin=2ex,
 }
 
 
@@ -319,7 +360,7 @@
   {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
   {€}{{\EUR}}1 {£}{{\pounds}}1
   {ñ}{{\~n}}1 {Ñ}{{\~N}}1
-  {¡}{{!`}}1
+  {¡}{{!`}}1 {¿}{{?`}}1
 }
 \newcommand{\comment}[1]{{\color{VerdeOscuro}#1}}
 \newcommand{\code}[1]{\textcolor{\colCode}{\texttt{#1}}}
@@ -349,7 +390,8 @@
 %
 \usepackage{algorithm, algorithmicx}
 %\usepackage{float}
-\usepackage[noend]{algpseudocode}
+%\usepackage[noend]{algpseudocode}
+\usepackage{algpseudocode}
 \def\entersymbol{$\hookleftarrow$}
 \makeatletter
 \renewcommand{\ALG@name}{Algoritmo}

@@ -77,10 +77,10 @@
     \centering
     
     \leavevmode%
-    \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+    \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{0.8\paperwidth}%
           \vbox{}\vskip-.75ex%
           \centering\leavevmode
-          \usebeamercolor[fg]{frametitle}\usebeamerfont{title}\strut\hspace{2.5cm}\insertsection\strut\par%
+          \usebeamercolor[fg]{frametitle}\usebeamerfont{title}\strut\insertsection\strut\par%
           \vskip1.0ex
           \nointerlineskip
           \vbox{}%
@@ -94,12 +94,8 @@
         \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
         \pgftext[left,base]{\pgfuseshading{beamer@topshade}}
       \end{pgfpicture}
-      \hskip-\paperwidth%
+      \hskip-0.81\paperwidth%
       \box\beamer@tempbox%
-      
-      \begin{beamercolorbox}[sep=8pt,center,#1]{author}
-       
-      \end{beamercolorbox}
 
   \endgroup
   
