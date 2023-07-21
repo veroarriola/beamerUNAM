@@ -1,4 +1,5 @@
 %% Requiere
+%% sudo apt install texlive-pictures
 %% sudo apt-get install texlive-science texlive-latex-extra biber
 %% sudo apt-get install texlive-latex-recommended texlive-lang-spanish texlive-fonts-extra
 
@@ -6,9 +7,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,mexico]{babel}
 \usepackage{csquotes}
-\usepackage{default}
-\uselanguage{spanish}
-\languagepath{spanish}
+%\usepackage{default}
+\uselanguage{Spanish}
+\languagepath{Spanish}
 
 \usepackage[normalem]{ulem}
 % Tip from: https://tex.stackexchange.com/questions/20609/strikeout-in-math-mode
@@ -121,7 +122,7 @@
  \def\colMain{Violeta}
  \def\colHead{\colMain!50!White}
  \def\colEmph{blue}
- \setbeamercolor{alerted text}{fg=blue}
+ \setbeamercolor{alerted text}{fg=Coral}
 }
 
 \newcommand{\ThemeOtherViolet}{
@@ -153,7 +154,6 @@
 
 \renewcommand{\emph}[1]{{\color{\colEmph}\textit{#1}}}
  
- 
 
 %%
 %% Highlight equations
@@ -172,13 +172,16 @@
   bottom color=\colMain!10!white,middle color=\colEmph!50!white},
   fuzzy halo=1pt with \colEmph,drop large lifted shadow,#1}
   
-  
+%%
+%% Figures
+%%
+\usepackage[export]{adjustbox}
 
 %%
 %% Tikz
 %%
 \usepackage{tikz,pgfplots,pgfplotstable}
-\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.18}
 %\usepackage{etex}
 \usetikzlibrary{shapes, shapes.geometric,
                 arrows, arrows.meta,
@@ -203,14 +206,16 @@
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
+\mathchardef\mhyphen="2D % Define a "math hyphen"
 
 %% Columns
 
 \usepackage{multicol}
 
 %% Tables
-\usepackage{longtable,tabu}
+\usepackage{longtable,tabu, array, booktabs}
 \usepackage{tabularx}
+\usepackage{tabulary}
 \newcommand{\thead}[1]{\textbf{#1}}
 \newcommand{\tlongfoot}[1]{%
   \hline \multicolumn{#1}{r}{\textcolor{gray}{Continúa...}} \\ \endfoot%
@@ -238,9 +243,12 @@
 
 \def\colMarcos{CadetBlue}
 \def\colEncabezado{AzulCobalto!50}
+\def\colEncabezadoDos{Violeta!50}
 \def\colBackground{\colMarcos!10}
 \usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{H}{>{\columncolor{\colEncabezado}}c}
+\newcolumntype{J}{>{\columncolor{\colEncabezadoDos}}c}
 \newcolumntype{I}{>{\columncolor{\colEncabezado}}l}
 \newcolumntype{B}{>{\columncolor{\colBackground}}c}
 %\newcolumntype{L}{>{\columncolor{\colBackground}}l}
@@ -255,6 +263,7 @@
 
 
 %% Web
+\usepackage{xurl}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor=,urlcolor=AzulCobalto,citecolor=Gray}
 %\newcommand{\hurl}[1]{\begin{footnotesize}\texttt{\href{#1}{#1}}\end{footnotesize}}
@@ -295,13 +304,23 @@
 % %   {\item}
 % 
 
-
+%%
 %% Enumeracion
+%%
 \usepackage[newenum,newitem]{paralist}
 
+% For enumerations of more than one slide
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+\resetcounteronoverlays{saveenumi}
 
 %% Code
 \usepackage{listings}
+\usepackage[font={footnotesize},skip=0.5\baselineskip]{caption}
+\captionsetup{belowskip=1pt}
+
+\captionsetup[lstlisting]{font={footnotesize}}
 \renewcommand*{\lstlistingname}{Código}
 
 \lstdefinelanguage{sintaxdef}{
@@ -324,16 +343,16 @@
 }
 \lstdefinestyle{shell}
 {
-  basicstyle=\ttfamily\footnotesize,
+  basicstyle=\ttfamily\scriptsize,
   numbers=none,
-  backgroundcolor = \color{lightgray},
+  backgroundcolor = \color{lightgray!70},
   frame=None,
   framexleftmargin=2ex,
 }
 
 
 \lstset{ %
-  basicstyle=\ttfamily\footnotesize,        % the size of the fonts that are used for the code
+  basicstyle=\ttfamily\scriptsize,        % the size of the fonts that are used for the code
   commentstyle=\color{DarkGreen}\textit,    % comment style
   keywordstyle=\color{blue},       % keyword style
   numbers=left,		% where to put the line-numbers; possible values are (none, left, right)
@@ -390,17 +409,23 @@
 %
 \usepackage{algorithm, algorithmicx}
 %\usepackage{float}
-%\usepackage[noend]{algpseudocode}
-\usepackage{algpseudocode}
+\usepackage[noend]{algpseudocode}
+%\usepackage{algpseudocode}
 \def\entersymbol{$\hookleftarrow$}
 \makeatletter
+
+\renewcommand{\ALG@beginalgorithmic}{\small}
+\algrenewcommand{\alglinenumber}[1]{\color{gray}\scriptsize#1:}
+
 \renewcommand{\ALG@name}{Algoritmo}
 \renewcommand{\listalgorithmname}{Lista de \ALG@name s}
 \algrenewcommand\textproc{\fontfamily{phv}\selectfont\textsc}
 \renewcommand*\Call[2]{\textproc{#1}(#2)}
-\algblockdefx[FOREACH]{ForEach}{EndFor}%
-     [2]{\textbf{for each} \textit{#1} \textbf{in} \textit{#2} \textbf{do}}%
-     {\textbf{end for}}
+% \algblockdefx[FOREACH]{ForEach}{EndFor}%
+%      [2]{\textbf{for each} \textit{#1} \textbf{in} \textit{#2} \textbf{do}}%
+%      {\textbf{end for}}
+% http://tug.ctan.org/macros/latex/contrib/algorithmicx/algorithmicx.pdf
+\algdef{SnE}[FOREACH]{ForEach}{EndFor}[2]{\textbf{for each} \textit{\ #1} \textbf{in} \textit{\ #2} \textbf{do}}
 \makeatother
 
 
