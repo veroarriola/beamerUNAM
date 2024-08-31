@@ -38,6 +38,9 @@
 \LetLtxMacro{\oldscshape}{\scshape}
 \renewcommand{\scshape}{\fontfamily{phv}\selectfont\oldscshape}
 
+% Arrows for long lines in listings
+\usepackage{pifont}
+
 \def\thefootnote{[\arabic{footnote}]}
 
 %%
@@ -343,13 +346,18 @@
 }
 \lstdefinestyle{shell}
 {
+  language=bash,
   basicstyle=\ttfamily\scriptsize,
+  %columns=fixed,         % Monospaced
+  %keepspaces=true,
   numbers=none,
-  backgroundcolor = \color{lightgray!70},
-  frame=None,
+  backgroundcolor = \color{\colTableRow!50},
+  frame=shadowbox,
   framexleftmargin=2ex,
+  morekeywords=[2]{\$},keywordstyle=[2]{\color{\colMarcos}},
+  morecomment=[l]{\#},
+  commentstyle=\color{gray},
 }
-
 
 \lstset{ %
   basicstyle=\ttfamily\scriptsize,        % the size of the fonts that are used for the code
@@ -362,7 +370,8 @@
   extendedchars=true,
   breaklines=true,
   %postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}, % Broken
-  postbreak=-->,
+  postbreak={\ding{229}},   % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
+  %postbreak={\textcolor{red}{\ding{229}}},
   frame=lines,
   rulecolor=\color{cyan}
 }
