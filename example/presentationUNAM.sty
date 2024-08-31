@@ -1,7 +1,7 @@
 %% Requiere
 %% sudo apt install texlive-pictures
-%% sudo apt-get install texlive-science texlive-latex-extra biber
-%% sudo apt-get install texlive-latex-recommended texlive-lang-spanish texlive-fonts-extra
+%% sudo apt install texlive-science texlive-latex-extra biber
+%% sudo apt install texlive-latex-recommended texlive-lang-spanish texlive-fonts-extra
 
 %% Spanish
 \usepackage[utf8]{inputenc}
@@ -217,6 +217,7 @@
 
 %% Tables
 \usepackage{longtable,tabu, array, booktabs}
+\usepackage{tabularray}
 \usepackage{tabularx}
 \usepackage{tabulary}
 \newcommand{\thead}[1]{\textbf{#1}}
@@ -326,6 +327,36 @@
 \captionsetup[lstlisting]{font={footnotesize}}
 \renewcommand*{\lstlistingname}{Código}
 
+%% Soporte para C#
+% https://tex.stackexchange.com/questions/30657/listings-package-for-c
+%%\lstloadlanguages{C,C++,csh,Java}
+% \lstdefinelanguage{CSharp}{
+%   keywords = { abstract, event, new, struct,
+%   as, explicit, null, switch,
+%   base, extern, object, this,
+%   bool, false, operator, throw,
+%   break, finally, out, true,
+%   byte, fixed, override, try,
+%   case, float, params, typeof,
+%   catch, for, private, uint,
+%   char, foreach, protected, ulong,
+%   checked, goto, public, unchecked,
+%   class, if, readonly, unsafe,
+%   const, implicit, ref, ushort,
+%   continue, in, return, using,
+%   decimal, int, sbyte, virtual,
+%   default, interface, sealed, volatile,
+%   delegate, internal, short, void,
+%   do, is, sizeof, while,
+%   double, lock, stackalloc,
+%   else, long, static,
+%   enum, namespace, string},
+%   sensitive=true,  % case-sensitive
+%   morecomment=[l]{//}, % l para comentarios de línea
+%   morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+%   morestring=[b]" % defines that strings are enclosed in double quotes
+% }
+
 \lstdefinelanguage{sintaxdef}{
     alsodigit = {::=},
     keywords = {},
@@ -348,8 +379,6 @@
 {
   language=bash,
   basicstyle=\ttfamily\scriptsize,
-  %columns=fixed,         % Monospaced
-  %keepspaces=true,
   numbers=none,
   backgroundcolor = \color{\colTableRow!50},
   frame=shadowbox,
@@ -361,7 +390,9 @@
 
 \lstset{ %
   basicstyle=\ttfamily\scriptsize,        % the size of the fonts that are used for the code
-  commentstyle=\color{DarkGreen}\textit,    % comment style
+  columns=fixed,         % Monospaced
+  keepspaces=true,
+  commentstyle=\color{gray}\textit,    % comment style
   keywordstyle=\color{blue},       % keyword style
   numbers=left,		% where to put the line-numbers; possible values are (none, left, right)
   numberstyle=\tiny\color{DarkGray}, % the style that is used for the line-numbers
@@ -395,6 +426,7 @@
 \newsavebox{\codebox}
 
 \def\Java{\code{Java}}
+\def\CSharp{\texttt{C\#}}
 
 %% Verbatim with style
 \usepackage{fancyvrb}
