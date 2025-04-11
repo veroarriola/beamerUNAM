@@ -356,6 +356,15 @@
 %   morecomment=[s]{/*}{*/}, % s is for start and end delimiter
 %   morestring=[b]" % defines that strings are enclosed in double quotes
 % }
+\lstdefinelanguage{md}{
+    keywords = {install},
+    morekeywords = {directory, destination, project_name},
+    sensitive = false,
+    morecomment=[l]{\#},
+    commentstyle=\color{purple},
+    mathescape=true,
+}
+\newcommand{\mdbold}[1]{\textcolor{blue}{\textbf{#1}}}
 
 \lstdefinelanguage{sintaxdef}{
     alsodigit = {::=},
