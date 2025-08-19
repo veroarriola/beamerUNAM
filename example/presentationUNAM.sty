@@ -5,7 +5,7 @@
 
 %% Spanish
 \usepackage[utf8]{inputenc}
-\usepackage[spanish,mexico]{babel}
+\usepackage[english,spanish,mexico]{babel}  % Se puede usar 'english' dentro de 'otherlanguage'
 \usepackage{csquotes}
 %\usepackage{default}
 \uselanguage{Spanish}
@@ -269,8 +269,12 @@
 %% Web
 \usepackage{xurl}
 \usepackage{hyperref}
+<<<<<<< HEAD
 \hypersetup{breaklinks=true}
 \hypersetup{colorlinks,linkcolor=,urlcolor=AzulCobalto,citecolor=Gray}
+=======
+\hypersetup{colorlinks,linkcolor=,urlcolor=AzulCobalto,citecolor=Gray,breaklinks=true}
+>>>>>>> 852f0d413e8dc0f6fb0402bfc45f0288e2473770
 %\newcommand{\hurl}[1]{\begin{footnotesize}\texttt{\href{#1}{#1}}\end{footnotesize}}
 \newcommand{\hurl}[1]{\href{#1}{{\color{AzulCobalto}\begin{tiny}\texttt{#1}\end{tiny}}}}
 \newcommand{\fhref}[2]{\href{#1}{\color{AzulCobalto}\begin{tiny}\texttt{#2}\end{tiny}}}
@@ -357,6 +361,15 @@
 %   morecomment=[s]{/*}{*/}, % s is for start and end delimiter
 %   morestring=[b]" % defines that strings are enclosed in double quotes
 % }
+\lstdefinelanguage{md}{
+    keywords = {install},
+    morekeywords = {directory, destination, project_name},
+    sensitive = false,
+    morecomment=[l]{\#},
+    commentstyle=\color{purple},
+    mathescape=true,
+}
+\newcommand{\mdbold}[1]{\textcolor{blue}{\textbf{#1}}}
 
 \lstdefinelanguage{sintaxdef}{
     alsodigit = {::=},

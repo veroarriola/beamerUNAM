@@ -15,7 +15,7 @@
 
 
 \pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
-  color(0pt)=(frametitle.bg);
+  color(-1pt)=(frametitle.bg);
   color(\paperwidth)=(frametitle right.bg)}
 
 \AtBeginDocument{
@@ -95,7 +95,7 @@
       \leavevmode%
       \hbox{%
         \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in foot}%
-            \usebeamerfont{author in head/foot}\insertauthor
+            \usebeamerfont{author in head/foot}\insertshortauthor
         \end{beamercolorbox}%
         \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{subsection in foot}%
             \usebeamerfont{subsection in head/foot}\expandafter\ifblank\expandafter{beamer@theme@subsection}{}{~~\insertsubsectionhead}
